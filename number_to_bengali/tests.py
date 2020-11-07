@@ -23,3 +23,27 @@ def test_can_take_string_input():
     isfloat, nubmer = input_sanitizer("10.1")
     assert isfloat == True
     assert nubmer == 10.1
+
+
+def test_can_handle_space_in_input_string():
+    """
+    Testing to check if the input_sanitizer() can correctly handle if the input
+    string has empty space
+    """
+
+    isfloat, number = input_sanitizer("1 ")
+    assert isfloat == False
+    assert number == 1
+
+    isfloat, number = input_sanitizer(" 1 ")
+    assert isfloat == False
+    assert number == 1
+
+
+def test_raises_valueerror_if_string_has_non_numeric_chars():
+    """
+    Testing to check if other-non numeric char in the input is handled correctly
+    """
+    isfloat, number = input_sanitizer(" a1 ")
+    assert isfloat == None
+    assert number == None
