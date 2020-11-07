@@ -1,7 +1,7 @@
 import pytest
 
 from number_to_bengali.main import to_bn_word
-from number_to_bengali.utils import input_sanitization
+from number_to_bengali.utils import input_sanitizer
 
 
 def test_single_digit():
@@ -16,10 +16,10 @@ def test_can_take_string_input():
     Testing to check if the number input can take string and convert to float 
     and int successfully
     """
-    isfloat, nubmer = input_sanitization("1")
+    isfloat, nubmer = input_sanitizer("1")
     assert isfloat == False
     assert nubmer == 1
 
-    isfloat, nubmer = input_sanitization("10.1")
+    isfloat, nubmer = input_sanitizer("10.1")
     assert isfloat == True
     assert nubmer == 10.1
