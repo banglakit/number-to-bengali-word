@@ -1,7 +1,7 @@
 import pytest
 
 from number_to_bengali.main import to_bn_word
-from number_to_bengali.utils import input_sanitizer
+from number_to_bengali.utils import generate_segments, input_sanitizer
 
 
 def test_single_digit():
@@ -57,3 +57,29 @@ def test_other_data_types_are_handled_correctly():
     isfloat, number = input_sanitizer([1, 0])
     assert isfloat == None
     assert number == None
+
+
+def test_segment_generation():
+    """
+    Testing to check if the generation of segments as per units such as koti, 
+    lokkho, hazar etc. are correct.
+    """
+    test_data = {
+        'koti': 1,
+        'lokkho': 20,
+        'hazar': 33,
+        'sotok': 4,
+        'ekok': 20
+    }
+
+    assert generate_segments(12033420) == test_data
+
+    test_data = {
+        'koti': 100,
+        'lokkho': 00,
+        'hazar': 33,
+        'sotok': 4,
+        'ekok': 20
+    }
+
+    assert generate_segments(1000033420) == test_data
