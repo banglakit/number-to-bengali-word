@@ -1,7 +1,8 @@
 import pytest
 
 from number_to_bengali.main import to_bn_word
-from number_to_bengali.utils import generate_segments, input_sanitizer
+from number_to_bengali.utils import (float_int_extraction, generate_segments,
+                                     input_sanitizer)
 
 
 def test_single_digit():
@@ -83,3 +84,12 @@ def test_segment_generation():
     }
 
     assert generate_segments(1000033420) == test_data
+
+
+def test_float_and_int_are_correctly_extracted():
+    """
+    Testing if the integer and float part are extracted correctly from the input
+    number
+    """
+    assert (10, 1) == float_int_extraction(10.10)
+    assert (1, None) == float_int_extraction(1)
