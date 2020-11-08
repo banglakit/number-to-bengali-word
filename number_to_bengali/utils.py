@@ -34,3 +34,15 @@ def generate_segments(number):
     segments['ekok'] = number
 
     return segments
+
+
+def float_int_extraction(number):
+    """
+    Extracting the float and int part from the passed number. The first return
+    is the part before the decimal point and the rest is the fraction.
+    """
+    _number = str(number)
+    if "." in _number:
+        return tuple([int(x) for x in _number.split(".")])
+    else:
+        return number, None
