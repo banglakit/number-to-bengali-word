@@ -47,3 +47,13 @@ def test_raises_valueerror_if_string_has_non_numeric_chars():
     isfloat, number = input_sanitizer(" a1 ")
     assert isfloat == None
     assert number == None
+
+
+def test_other_data_types_are_handled_correctly():
+    """
+    Testing to check if anything other than int, float or string is passed the 
+    input_sanitizer returns None
+    """
+    isfloat, number = input_sanitizer([1, 0])
+    assert isfloat == None
+    assert number == None
