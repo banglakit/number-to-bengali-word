@@ -2,7 +2,7 @@ import pytest
 
 from number_to_bengali.main import to_bn_word
 from number_to_bengali.utils import (float_int_extraction, generate_segments,
-                                     input_sanitizer)
+                                     input_sanitizer, whole_part_word_gen)
 
 
 def test_single_digit():
@@ -93,3 +93,13 @@ def test_float_and_int_are_correctly_extracted():
     """
     assert (10, 1) == float_int_extraction(10.10)
     assert (1, None) == float_int_extraction(1)
+
+
+def test_word_generation_for_whole_part():
+    """
+    Testing if the part before the decimal point is generated correctly
+    """
+    assert whole_part_word_gen(10001) == "দশ হাজার এক"
+    assert whole_part_word_gen(1) == "এক"
+    assert whole_part_word_gen(
+        1277548) == "বার লক্ষ সাতাত্তর হাজার পাঁচ শত আটচল্লিশ"
