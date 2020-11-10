@@ -1,5 +1,7 @@
 import math
 
+from .bengali_words import numeric_words, units
+
 
 def input_sanitizer(number):
     if isinstance(number, float) or isinstance(number, int) or isinstance(number, str):
@@ -46,3 +48,16 @@ def float_int_extraction(number):
         return tuple([int(x) for x in _number.split(".")])
     else:
         return number, None
+
+
+def whole_part_word_gen(segments):
+    """
+    Generating the bengali word for the whole part of the number
+    """
+    generated_words = ''
+    for segment in segments:
+        if segments[segment]:
+            generated_words += numeric_words[str(segments[segment])] + \
+                " " + units[segment] + " "
+
+    return generated_words[:-2]
