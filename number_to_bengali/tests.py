@@ -1,8 +1,9 @@
 import pytest
 
 from number_to_bengali.main import to_bn_word
-from number_to_bengali.utils import (float_int_extraction, generate_segments,
-                                     input_sanitizer, whole_part_word_gen)
+from number_to_bengali.utils import (float_int_extraction, fraction_to_words,
+                                     generate_segments, input_sanitizer,
+                                     whole_part_word_gen)
 
 
 def test_single_digit():
@@ -128,3 +129,12 @@ def test_word_generation_for_whole_part():
     }
     assert whole_part_word_gen(
         test_data) == "বার লক্ষ সাতাত্তর হাজার পাঁচ শত আটচল্লিশ"
+
+
+def word_gen_for_fraction_part():
+    """
+    Testing word generation for the part after the decimal point
+    """
+    assert fraction_to_words(123) == "এক দুই তিন"
+    assert fraction_to_words(500) == "পাঁচ শুণ্য শুণ্য"
+    assert fraction_to_words(0) == "শুণ্য"
