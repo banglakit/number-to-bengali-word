@@ -61,3 +61,13 @@ def whole_part_word_gen(segments):
                 " " + units[segment] + " "
 
     return generated_words[:-2]
+
+
+def fraction_to_words(fraction):
+    """
+    Generating bengali words for the part after the decimal point
+    """
+    generated_words = ""
+    for digit in str(fraction):
+        generated_words += numeric_words[digit] + " "
+    return generated_words[:-1]
