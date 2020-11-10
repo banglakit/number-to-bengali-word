@@ -127,4 +127,4 @@ def test_word_generation_for_whole_part():
         'ekok': 48
     }
     assert whole_part_word_gen(
-        1277548) == "বার লক্ষ সাতাত্তর হাজার পাঁচ শত আটচল্লিশ"
+        test_data) == "বার লক্ষ সাতাত্তর হাজার পাঁচ শত আটচল্লিশ"
