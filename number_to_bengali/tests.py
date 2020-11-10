@@ -98,8 +98,33 @@ def test_float_and_int_are_correctly_extracted():
 def test_word_generation_for_whole_part():
     """
     Testing if the part before the decimal point is generated correctly
+    The input taken should be segments
     """
-    assert whole_part_word_gen(10001) == "দশ হাজার এক"
-    assert whole_part_word_gen(1) == "এক"
+    test_data = {
+        'koti': 0,
+        'lokkho': 0,
+        'hazar': 10,
+        'sotok': 0,
+        'ekok': 1
+    }
+
+    assert whole_part_word_gen(test_data) == "দশ হাজার এক"
+
+    test_data = {
+        'koti': 0,
+        'lokkho': 0,
+        'hazar': 0,
+        'sotok': 0,
+        'ekok': 1
+    }
+    assert whole_part_word_gen(test_data) == "এক"
+
+    test_data = {
+        'koti': 0,
+        'lokkho': 12,
+        'hazar': 77,
+        'sotok': 5,
+        'ekok': 48
+    }
     assert whole_part_word_gen(
         1277548) == "বার লক্ষ সাতাত্তর হাজার পাঁচ শত আটচল্লিশ"
