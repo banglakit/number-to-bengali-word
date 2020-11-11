@@ -5,19 +5,17 @@ from .bengali_words import numeric_words, units
 
 def input_sanitizer(number):
     if isinstance(number, float) or isinstance(number, int) or isinstance(number, str):
-        isfloat = isinstance(number, float)
         if isinstance(number, str):
             try:
-                isfloat = "." in number
-                if isfloat:
+                if "." in number:
                     number = float(number)
                 else:
                     number = int(number)
             except ValueError:
-                return None, None
-        return isfloat, number
+                return None
+        return number
     else:
-        return None, None
+        return None
 
 
 def generate_segments(number):

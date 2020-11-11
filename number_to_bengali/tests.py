@@ -18,12 +18,10 @@ def test_can_take_string_input():
     Testing to check if the number input can take string and convert to float 
     and int successfully
     """
-    isfloat, nubmer = input_sanitizer("1")
-    assert isfloat == False
+    nubmer = input_sanitizer("1")
     assert nubmer == 1
 
-    isfloat, nubmer = input_sanitizer("10.1")
-    assert isfloat == True
+    nubmer = input_sanitizer("10.1")
     assert nubmer == 10.1
 
 
@@ -33,12 +31,10 @@ def test_can_handle_space_in_input_string():
     string has empty space
     """
 
-    isfloat, number = input_sanitizer("1 ")
-    assert isfloat == False
+    number = input_sanitizer("1 ")
     assert number == 1
 
-    isfloat, number = input_sanitizer(" 1 ")
-    assert isfloat == False
+    number = input_sanitizer(" 1 ")
     assert number == 1
 
 
@@ -46,8 +42,7 @@ def test_raises_valueerror_if_string_has_non_numeric_chars():
     """
     Testing to check if other-non numeric char in the input is handled correctly
     """
-    isfloat, number = input_sanitizer(" a1 ")
-    assert isfloat == None
+    number = input_sanitizer(" a1 ")
     assert number == None
 
 
@@ -56,8 +51,7 @@ def test_other_data_types_are_handled_correctly():
     Testing to check if anything other than int, float or string is passed the 
     input_sanitizer returns None
     """
-    isfloat, number = input_sanitizer([1, 0])
-    assert isfloat == None
+    number = input_sanitizer([1, 0])
     assert number == None
 
 
