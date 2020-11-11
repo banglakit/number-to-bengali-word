@@ -132,3 +132,12 @@ def word_gen_for_fraction_part():
     assert fraction_to_words(123) == "এক দুই তিন"
     assert fraction_to_words(500) == "পাঁচ শুণ্য শুণ্য"
     assert fraction_to_words(0) == "শুণ্য"
+
+
+def test_number_with_fractions():
+    """
+    full testing number with fraction
+    """
+    assert to_bn_word(
+        1277548.57) == 'বার লক্ষ সাতাত্তর হাজার পাঁচ শত আটচল্লিশ দশমিক পাঁচ সাত'
+    assert to_bn_word(.5) == "দশমিক পাঁচ"
