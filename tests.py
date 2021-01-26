@@ -1,5 +1,3 @@
-import pytest
-
 from number_to_bengali.main import to_bn_word
 from number_to_bengali.utils import (float_int_extraction, fraction_to_words,
                                      generate_segments, input_sanitizer,
@@ -15,14 +13,14 @@ def test_single_digit():
 
 def test_can_take_string_input():
     """
-    Testing to check if the number input can take string and convert to float 
+    Testing to check if the number input can take string and convert to float
     and int successfully
     """
-    nubmer = input_sanitizer("1")
-    assert nubmer == 1
+    number = input_sanitizer("1")
+    assert number == 1
 
-    nubmer = input_sanitizer("10.1")
-    assert nubmer == 10.1
+    number = input_sanitizer("10.1")
+    assert number == 10.1
 
 
 def test_can_handle_space_in_input_string():
@@ -40,24 +38,25 @@ def test_can_handle_space_in_input_string():
 
 def test_raises_valueerror_if_string_has_non_numeric_chars():
     """
-    Testing to check if other-non numeric char in the input is handled correctly
+    Testing to check if other-non numeric char in the input
+    is handled correctly
     """
     number = input_sanitizer(" a1 ")
-    assert number == None
+    assert number is None
 
 
 def test_other_data_types_are_handled_correctly():
     """
-    Testing to check if anything other than int, float or string is passed the 
-    input_sanitizer returns None
+    Testing to check if anything other than int, float or string
+    is passed the input_sanitizer returns None
     """
     number = input_sanitizer([1, 0])
-    assert number == None
+    assert number is None
 
 
 def test_segment_generation():
     """
-    Testing to check if the generation of segments as per units such as koti, 
+    Testing to check if the generation of segments as per units such as koti,
     lokkho, hazar etc. are correct.
     """
     test_data = {
@@ -83,8 +82,8 @@ def test_segment_generation():
 
 def test_float_and_int_are_correctly_extracted():
     """
-    Testing if the integer and float part are extracted correctly from the input
-    number
+    Testing if the integer and float part are extracted correctly
+    from the input number
     """
     assert (10, 1) == float_int_extraction(10.10)
     assert (1, None) == float_int_extraction(1)
@@ -138,6 +137,6 @@ def test_number_with_fractions():
     """
     full testing number with fraction
     """
-    assert to_bn_word(
-        1277548.57) == 'বার লক্ষ সাতাত্তর হাজার পাঁচ শত আটচল্লিশ দশমিক পাঁচ সাত'
+    assert to_bn_word(1277548.57) == 'বার লক্ষ সাতাত্তর হাজার পাঁচ শত ' \
+                                     'আটচল্লিশ দশমিক পাঁচ সাত'
     assert to_bn_word(.5) == "দশমিক পাঁচ"

@@ -4,7 +4,8 @@ from .bengali_words import numeric_words, units
 
 
 def input_sanitizer(number):
-    if isinstance(number, float) or isinstance(number, int) or isinstance(number, str):
+    if isinstance(number, float) or isinstance(number, int) or \
+            isinstance(number, str):
         if isinstance(number, str):
             try:
                 if "." in number:
